@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Coordinator Page</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      background-color: #f4f4f9;
+      transition: background-color 0.3s ease;
+    }
+    .navbar {
+      background: linear-gradient(90deg, #0062E6, #33AEFF);
+      justify-content: space-between; /* Center the navbar content */
+    }
+    .navbar-brand img {
+      max-width: 100px;
+    }
+    .nav-link {
+      color: white !important;
+      margin-right: 15px;
+      transition: color 0.3s;
+    }
+    .nav-link:hover {
+      color: #ffeb3b !important;
+    }
+    .coordinator-img {
+      width: 300px;  /* Adjusted width */
+      height: 300px; /* Adjusted height */
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
+    .cr-img {
+      width: 100px;  /* Adjusted width */
+      height: 100px; /* Adjusted height */
+      object-fit: cover;
+      margin-right: 10px;
+    }
+    .card-header {
+      background-color: #007bff;
+      color: white;
+    }
+    .card {
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .marquee {
+      background-color: #007bff12;
+      color: white;
+      padding: 10px 0;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+    }
+    .top-bar {
+      background-color: #fefefe;
+      color: rgb(7, 7, 7);
+      padding: 10px 0;
+    }
+    .top-bar .col {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .top-bar .col img {
+      width: 200px;
+      margin-right: 15px;
+    }
+    .dark-mode {
+      background-color: #333;
+      color: #f4f4f9;
+    }
+    .dark-mode .navbar {
+      background: linear-gradient(90deg, #333, #555);
+    }
+    .dark-mode .card {
+      background-color: #444;
+      color: #f4f4f9;
+    }
+    .dark-mode .card-header {
+      background-color: #1a1a1a;
+    }
+    .dark-mode .marquee {
+      background-color: #33333312;
+    }
+    .dark-mode .top-bar {
+      background-color: #ffffff;
+      color: #101010;
+    }
+    .dark-mode .nav-link {
+      color: #f4f4f9 !important;
+    }
+    .dark-mode-toggle {
+      background-color: transparent;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      transition: color 0.3s;
+    }
+    .dark-mode-toggle:hover {
+      color: #ffeb3b;
+    }
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+       
+/* darkmode button  */
+.dark-mode-toggle {
+      background-color: transparent;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      transition: color 0.3s;
+    }
+
+    .dark-mode-toggle:hover {
+      color: #ffeb3b;
+    }
+/* Light/Dark Mode Toggle Styles */
+.checkbox {
+      opacity: 0;
+      position: absolute;
+    }
+
+    .checkbox-label {
+      background-color: #111;
+      width: 50px;
+      height: 26px;
+      border-radius: 50px;
+      position: relative;
+      padding: 5px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .fa-moon {
+      color: #f1c40f;
+    }
+
+    .fa-sun {
+      color: #f39c12;
+    }
+
+    .checkbox-label .ball {
+      background-color: #fff;
+      width: 22px;
+      height: 22px;
+      position: absolute;
+      left: 2px;
+      top: 2px;
+      border-radius: 50%;
+      transition: transform 0.2s linear;
+    }
+
+    .checkbox:checked + .checkbox-label .ball {
+      transform: translateX(24px);
+    }
+
+    .hero {
+    /* background-image: linear-gradient(to bottom, #f7f7f7, #e7e7e7); */
+    padding: 100px 0;
+    text-align: center;
+}
+.dark-mode-.hero{
+background-color: #1a1a1a;  
+}
+
+.hero h1 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.dark-mode-.hero h1{
+ 
+  background-color: #151414;
+  color: #f4f4f9;
+
+}
+.features {
+    background-color: #f7f7f7;
+    padding: 50px 0;
+}
+.dark-mode-features{
+  background-color: #1a1a1a; 
+}
+.features.row {
+    margin-bottom: 30px;
+}
+
+.features i {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.features h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.features p {
+    margin-bottom: 20px;
+}
+
+.features a {
+    text-decoration: none;
+    color: #f7f7f7;
+}
+
+.features a:hover {
+    color: #23527c;
+}
+.dark-mode-.features{
+  background-color: rgba(0, 0, 0, 0.716);
+  color: white;
+}
+.dark-mode .features {
+  background-color: #151414;
+  color: #f4f4f9;
+}
+
+.slide-in {
+    animation: slideInAnimation 1s ease-in-out forwards;
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  @keyframes slideInAnimation {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  .footer {
+  background: linear-gradient(90deg, #0062E6, #33AEFF);
+  color: white;
+  padding: 20px 0;
+}
+
+.footer h5 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.footer ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.footer ul li {
+  margin-bottom: 10px;
+}
+
+.footer ul li a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer ul li a:hover {
+  color: #ffeb3b;
+}
+
+.footer .fab {
+  font-size: 20px;
+  transition: color 0.3s;
+}
+
+.footer .fab:hover {
+  color: #ffeb3b;
+}
+
+.footer .container.text-center p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.dark-mode .footer {
+  background: linear-gradient(90deg, #333, #555);
+}
+
+   /* Custom styling for the modal */
+   .modal-content {
+      background-color: #fff;
+      padding: 0;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      margin-top: 100px;
+    }
+    .poster-image {
+      width: 100%;
+      height: auto;
+    }
+    .close-icon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 1.5rem;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+      padding: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Bar -->
+  <div class="container-fluid top-bar">
+    <div class="row">
+      <div class="col d-flex justify-content-center align-items-center">
+        <img src="images/pragati-logo-JK-2-1536x572.png" alt="College Logo">
+        <p class="mb-0 ml-3">Phone:+91 8074533568</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about.html">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="coordinator.html">Coordinators</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="workshops.html">Workshops</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="clubs.html">Clubs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="strides.html">Strides</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="achivements.html">Achievements</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="competitions.html">Competitions</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="nccnss.html">NCC / NSS</a>
+        </li>
+        <li style="padding-top: 5px;">
+          <input type="checkbox" class="checkbox" id="checkbox">
+          <label for="checkbox" class="checkbox-label">
+            <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i>
+            <span class="ball"></span>
+          </label>
+    
+        </li>
+      </ul>
+    </div>
+    <div>
+  
+    </div>
+  </nav>
+<br>
+  <!-- <center><h2 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Home</h2></center> -->
+
+
+ <!-- Carousel -->
+ <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+      <div class="carousel-item active">
+          <img src="images/p1.jpg" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+          <img src="images/p2.jpg" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+          <img src="images/Pragati-Engineering-College-Kakinada-CV2.jpg" class="d-block w-100" alt="...">
+      </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+  </a>
+</div>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="container">
+    <h1 class="slide-in">Welcome to the CSE Department</h1>
+    <p class="slide-in">Empowering future innovators with cutting-edge technology, comprehensive education, and unparalleled opportunities. Join us to embark on a journey of discovery, learning, and excellence in the field of computer science and engineering.</p>
+    <a href="about.html" class="btn btn-primary slide-in">Learn More</a>
+  </div>
+</section>
+
+
+
+<!-- Features Section -->
+<!-- Features Section -->
+<section class="features">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <img src="images/placement.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <i class="fas fa-trophy"></i>
+            <h2>Achievements</h2>
+            <p>Our department takes pride in its numerous achievements, from student awards in national competitions to groundbreaking research contributions by our faculty. Explore the milestones we've reached and the accolades we've earned over the years.</p>
+
+            <a href="achivements.html" class="btn btn-secondary">View More</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <img src="images/karthikcard.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <i class="fas fa-user"></i>
+            <h2>Coordinators</h2>
+            <p>Meet the dedicated coordinators who lead our department's various programs and initiatives. Their expertise and commitment ensure the smooth operation and success of all departmental activities.This encourages the leadership qualities in the students</p>
+
+            <a href="coordinator.html" class="btn btn-secondary">View More</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <!-- <div class="card">
+          <img src="images/KANDIKONDA PRANAY 11.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <i class="fas fa-flag"></i>
+            <h2>NCC & NSS</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, vestibulum magna sed, convallis ex.</p>
+            <a href="ncc-nss.html" class="btn btn-secondary">View More</a>
+          </div>
+        </div> -->
+        <div class="card">
+          <img src="images/pragcard.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <i class="fas fa-users"></i>
+            <h2>Clubs</h2>
+            <p>Join one of our many clubs to enhance your skills, network with peers, and participate in exciting projects and events. Our clubs cater to a wide range of interests, from coding and robotics to entrepreneurship and innovation.</p>
+
+            <a href="clubs.html" class="btn btn-secondary">View More</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <img src="images/main1.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <i class="fas fa-rocket"></i>
+            <h2>Strides</h2>
+            <p>Discover the strides our department has made in advancing technology and education. From pioneering research projects to cutting-edge labs, we are committed to staying at the forefront of the tech industry.</p>
+
+            <a href="strides.html" class="btn btn-secondary">View More</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <img src="images/compition1.jpeg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <i class="fas fa-trophy"></i>
+            <h2>Competitions</h2>
+            <p>Our students excel in various competitions, showcasing their talents and innovative solutions. Learn about the challenges they face and the victories they achieve.We are going to conduct various coding competitions in our department</p>
+
+            <a href="competitions.html" class="btn btn-secondary">View More</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <img src="images/dataanalyst.jpeg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <i class="fas fa-chalkboard-teacher"></i>
+            <h2>Workshops</h2>
+            <p>Participate in our workshops to gain hands-on experience and practical skills in various fields of computer science and engineering. Our workshops are designed to complement classroom learning with real-world applications.</p>
+
+            <a href="workshops.html" class="btn btn-secondary">View More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 offset-md-4">
+
+        <div class="card">
+          <img src="images/KANDIKONDA PRANAY 11.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <i class="fas fa-flag"></i>
+            <h2>NCC & NSS</h2>
+            <p>Get involved with NCC and NSS to develop leadership skills, serve the community, and participate in diverse activities. Our programs aim to foster a sense of responsibility and civic duty among students.</p>
+
+            <a href="nccnss.html" class="btn btn-secondary">View More</a>
+          </div>
+        </div>
+        <!-- <div class="card">
+          <img src="images/pragsoft logo.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <i class="fas fa-users"></i>
+            <h2>Clubs</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, vestibulum magna sed, convallis ex.</p>
+            <a href="clubs.html" class="btn btn-secondary">View More</a>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- popupModal -->
+
+
+  <!-- Popup Modal -->
+<!-- Popup Modal -->
+<!--
+<div class="modal fade" id="popupModal" tabindex="-1" role="dialog" aria-labelledby="popupModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body p-0">
+        <img src="images\hpc_workshop.jpeg" alt="Special Offer Poster" class="poster-image">
+        <span class="close-icon" data-dismiss="modal" aria-label="Close">&times;</span>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+  <!-- Footer -->
+
+
+<!-- Footer -->
+<footer class="footer mt-auto py-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h5>Contact Us</h5>
+        <ul class="list-unstyled">
+          <li>Phone: 8074533568</li>
+          <li>Email: reach.karthik.khandavalli@gmail.com </li>
+          <li>Address: 1-378, ADB Road, Surampalem , Peddapuram East Godavari Dist.</li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h5>Quick Links</h5>
+        <ul class="list-unstyled">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="coordinator.html">Coordinators</a></li>
+          <li><a href="workshops.html">Workshops</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h5>Follow Us</h5>
+        <a href="#" class="text-white mr-3"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-white mr-3"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/karthik_khandavalli_?igsh=MTRyMjk5dnB0bHp2Zw==" class="text-white mr-3"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/karthik-khandavalli" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="container text-center mt-3">
+    <p class="mb-0">&copy; 2024 PRAGATI ENGINEERING COLLEGE [AUTONOMOUS]. All Rights Reserved. | Designed by K.V.V.L.S.KARTHIK [22A31A05A9]</p>
+  </div>
+</footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Dark Mode Script -->
+  <script>
+      const checkbox = document.getElementById("checkbox");
+    checkbox.addEventListener("change", function () {
+      document.body.classList.toggle("dark-mode");
+      localStorage.setItem("darkMode", checkbox.checked);
+    });
+
+    // Function to initialize dark mode based on user preference
+    function initializeDarkMode() {
+      const isDarkMode = JSON.parse(localStorage.getItem("darkMode")) || false;
+      if (isDarkMode) {
+        document.body.classList.add("dark-mode");
+        checkbox.checked = true;
+      }
+    }
+
+    // Call the initialization function
+    initializeDarkMode();
+  </script>
+    <!-- Custom Script to show the popup after 10 seconds -->
+    <script>
+      $(document).ready(function() {
+        setTimeout(function() {
+          $('#popupModal').modal('show');
+        }, 5000); // 10000 milliseconds = 10 seconds
+      });
+    </script>
+</body>
+</html>

@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Coordinator Page</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  
+  <style>
+    body {
+      background-color: #f4f4f9;
+      transition: background-color 0.3s ease;
+    }
+    .navbar {
+      background: linear-gradient(90deg, #0062E6, #33AEFF);
+      justify-content: space-between; /* Center the navbar content */
+    }
+    .navbar-brand img {
+      max-width: 100px;
+    }
+    .nav-link {
+      color: white !important;
+      margin-right: 15px;
+      transition: color 0.3s;
+    }
+    .nav-link:hover {
+      color: #ffeb3b !important;
+    }
+    .coordinator-img {
+      width: 300px;  /* Adjusted width */
+      height: 300px; /* Adjusted height */
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
+    .cr-img {
+      width: 100px;  /* Adjusted width */
+      height: 100px; /* Adjusted height */
+      object-fit: cover;
+      margin-right: 10px;
+    }
+    .card-header {
+      background-color: #007bff;
+      color: white;
+    }
+    .card {
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .marquee {
+      background-color: #007bff12;
+      color: white;
+      padding: 10px 0;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+    }
+    .top-bar {
+      background-color: #fefefe;
+      color: rgb(7, 7, 7);
+      padding: 10px 0;
+    }
+    .top-bar .col {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .top-bar .col img {
+      width: 200px;
+      margin-right: 15px;
+    }
+    .dark-mode {
+      background-color: #333;
+      color: #f4f4f9;
+    }
+    .dark-mode .navbar {
+      background: linear-gradient(90deg, #333, #555);
+    }
+    .dark-mode .card {
+      background-color: #444;
+      color: #f4f4f9;
+    }
+    .dark-mode .card-header {
+      background-color: #1a1a1a;
+    }
+    .dark-mode .marquee {
+      background-color: #33333312;
+    }
+    .dark-mode .top-bar {
+      background-color: #ffffff;
+      color: #101010;
+    }
+    .dark-mode .nav-link {
+      color: #f4f4f9 !important;
+    }
+    .dark-mode-toggle {
+      background-color: transparent;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      transition: color 0.3s;
+    }
+    .dark-mode-toggle:hover {
+      color: #ffeb3b;
+    }
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+/* darkmode button  */
+.dark-mode-toggle {
+      background-color: transparent;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      transition: color 0.3s;
+    }
+
+    .dark-mode-toggle:hover {
+      color: #ffeb3b;
+    }
+/* Light/Dark Mode Toggle Styles */
+.checkbox {
+      opacity: 0;
+      position: absolute;
+    }
+
+    .checkbox-label {
+      background-color: #111;
+      width: 50px;
+      height: 26px;
+      border-radius: 50px;
+      position: relative;
+      padding: 5px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .fa-moon {
+      color: #f1c40f;
+    }
+
+    .fa-sun {
+      color: #f39c12;
+    }
+
+    .checkbox-label .ball {
+      background-color: #fff;
+      width: 22px;
+      height: 22px;
+      position: absolute;
+      left: 2px;
+      top: 2px;
+      border-radius: 50%;
+      transition: transform 0.2s linear;
+    }
+
+    .checkbox:checked + .checkbox-label .ball {
+      transform: translateX(24px);
+    }
+
+    .footer {
+  background: linear-gradient(90deg, #0062E6, #33AEFF);
+  color: white;
+  padding: 20px 0;
+}
+
+.footer h5 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.footer ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.footer ul li {
+  margin-bottom: 10px;
+}
+
+.footer ul li a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer ul li a:hover {
+  color: #ffeb3b;
+}
+
+.footer .fab {
+  font-size: 20px;
+  transition: color 0.3s;
+}
+
+.footer .fab:hover {
+  color: #ffeb3b;
+}
+
+.footer .container.text-center p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.dark-mode .footer {
+  background: linear-gradient(90deg, #333, #555);
+}
+
+
+  </style>
+</head>
+<body>
+  <!-- Top Bar -->
+  <div class="container-fluid top-bar">
+    <div class="row">
+      <div class="col d-flex justify-content-center align-items-center">
+        <img src="images/pragati-logo-JK-2-1536x572.png" alt="College Logo">
+        <p class="mb-0 ml-3">Phone:+91 8074533568</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about.html">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="coordinator.html">Coordinators</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="workshops.html">Workshops</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="clubs.html">Clubs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="strides.html">Strides</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="achivements.html">Achievements</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="competitions.html">Competitions</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="nccnss.html">NCC / NSS</a>
+        </li>
+        <li style="padding-top: 5px;">
+          <input type="checkbox" class="checkbox" id="checkbox">
+          <label for="checkbox" class="checkbox-label">
+            <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i>
+            <span class="ball"></span>
+          </label>
+    
+        </li>
+      </ul>
+    </div>
+    <div>
+     
+
+
+    </div>
+  </nav>
+
+
+  <div class="container">
+    <center><i><h3 style="font-family: cursive;">NCC EVENTS AND CADETS</h3></i></center>
+    <div id="carouselExample" class="carousel slide" data-ride="carousel" data-interval="2000">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src= "images/evengt0.jpeg" class="d-block w-100" alt="Image 1">
+        </div>
+        <div class="carousel-item">
+          <img src="images/event1.jpeg" class="d-block w-100" alt="Image 2">
+        </div>
+        <div class="carousel-item">
+          <img src="images/event2.jpeg" class="d-block w-100" alt="Image 3">
+        </div>
+        <div class="carousel-item">
+          <img src="images/event3.jpeg" class="d-block w-100" alt="Image 4">
+        </div>
+        <div class="carousel-item">
+          <img src="images/event4.jpeg" class="d-block w-100" alt="Image 5">
+        </div>
+        <div class="carousel-item">
+          <img src="images/event5.jpeg" class="d-block w-100" alt="Image 6">
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div></div>
+
+<!-- FISRT BLOCK IMAGES  -->
+
+  <!-- Main Content -->
+  <div class="container mt-4">
+    <!-- Coordinators Section -->
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+     <center> <i> <B>    NCC CADET  </B></i> </center>
+          </div>
+          <div class="card-body text-center">
+            <img src="images/KANDIKONDA PRANAY .jpg" alt="Coordinator 1" class="coordinator-img">
+            <h5 class="card-title">KANDIKONDA PRANAY </h5>
+            <p class="card-text">22A31A0542 <br> CSE A</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+     <center>   <i> <B>   NCC CADET </B> </i> </center>
+          </div>
+          <div class="card-body text-center">
+            <img src="images/Kadali Nikitha Sri Satya Gayatri .jpg" height="30px" alt="Coordinator 2" class="coordinator-img">
+            <h5 class="card-title">Kadali Nikitha Sri Satya Gayatri</h5>
+            <p class="card-text">22A31A05E4  <br> CSE C</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+     <center> <i> <B>   NCC CADET</B></i> </center>
+          </div>
+          <div class="card-body text-center">
+            <img src="images/Deepansha Kotikalapudi.JPG" alt="Coordinator 1" class="coordinator-img">
+            <h5 class="card-title">Deepansha Kotikalapudi</h5>
+            <p class="card-text">21A31A05E6 <br> CSE C</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+     <center>   <i> <B>  NCC CADET </B> </i> </center>
+          </div>
+          <div class="card-body text-center">
+            <img src="images/gurugubelli jhansi .jpg" alt="Coordinator 2" class="coordinator-img">
+            <h5 class="card-title">Gurugubelli jhansi </h5>
+            <p class="card-text">22A31A0574 <br> CSE B</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+     <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+     <center> <i> <B>    NCC CADET </B></i> </center>
+          </div>
+          <div class="card-body text-center">
+            <img src="images/POKKULURI AKSHITH RAMALINGESWARA SHARMA 1.jpeg" alt="Coordinator 1" class="coordinator-img">
+            <h5 class="card-title">POKKULURI AKSHITH RAMALINGESWARA SHARMA</h5>
+            <p class="card-text">22A31A05C1 <br> CSE B</p>
+          </div>
+        </div>
+      </div>
+   
+    </div>
+
+
+  
+  
+  </div>
+
+
+
+
+
+  <!-- //SECOND BLOCK  -->
+
+  <div class="container">
+<center><H2><I><SPAn style="background-color: #ee8319; font-family: cursive;"> NSS EVENTS AND VOLUNTEERS </SPAn></I></H2></center> <br>
+
+  <div id="carouselExample" class="carousel slide" data-ride="carousel" data-interval="2000">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="images/nss1.jpeg" class="d-block w-100" alt="Image 1">
+      </div>
+      <div class="carousel-item">
+        <img src="images/nss2.jpeg" class="d-block w-100" alt="Image 2">
+      </div>
+      <div class="carousel-item">
+        <img src="images/nss3.jpeg" class="d-block w-100" alt="Image 3">
+      </div>
+      <div class="carousel-item">
+        <img src="images/nss4.jpeg" class="d-block w-100" alt="Image 4">
+      </div>
+      <div class="carousel-item">
+        <img src="images/nss5.jpeg" class="d-block w-100" alt="Image 5">
+      </div>
+      <div class="carousel-item">
+        <img src="images/nss6.jpeg" class="d-block w-100" alt="Image 6">
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div></div>
+
+  <!-- Main Content -->
+  <div class="container mt-4">
+    <!-- Coordinators Section -->
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+     <center> <i> <B>    NSS Boys Coordinator  </B></i> </center>
+          </div>
+          <div class="card-body text-center">
+            <img src="images/APPASANIHARI.JPG" alt="Coordinator 1" class="coordinator-img">
+            <h5 class="card-title">Appasani Hari Kailash</h5>
+            <p class="card-text">22A31A0528 <br> CSE A</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+     <center>   <i> <B>  NSS Girls Coordinator  </B> </i> </center>
+          </div>
+          <div class="card-body text-center">
+            <img src="images/HEMANJALI.JPG" alt="Coordinator 2" class="coordinator-img">
+            <h5 class="card-title">Jagilinki Hemanjali</h5>
+            <p class="card-text">22A31A05E3 <br> CSE C</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Team Members Section -->
+    <div class="row mt-4">
+      <!-- <div class="col">
+        <div style="color: #007bff;" class="marquee">
+          VOLUNTEER 
+        </div>
+      </div> -->
+    </div>
+    <br>  
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">
+        <CEnter>  <I>  <B> NSS VOLUNTEER  </B> </I> </CEnter>
+          </div>
+          <div class="card-body text-center">
+            <img src="images/karthik1.JPG" alt="Team Member 1" class="cr-img">
+            <h5 class="card-title">K.V.V.L.S.KARTHIK</h5>
+            <p class="card-text">22A31A05A9</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">
+            <CEnter>  <I>  <B> NSS VOLUNTEER  </B> </I> </CEnter>
+          </div>
+          <div class="card-body text-center">
+            <img src="images/DWARAMPUDI TEJO MADHURI.JPG" alt="Team Member 2" class="cr-img">
+            <h5 class="card-title">DWARAMPUDI TEJO MADHURI</h5>
+            <p class="card-text">22A31A05D7</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">
+            <CEnter>  <I>  <B> NSS VOLUNTEER  </B> </I> </CEnter>
+          </div>
+          <div class="card-body text-center">
+            <img src="images/KONDETI SUSHAN NIHARIKA.JPG" alt="Team Member 3" class="cr-img">
+            <h5 class="card-title">KONDETI SUSHAN NIHARIKA</h5>
+            <p class="card-text">22A31A05E9</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header">
+              <CEnter>  <I>  <B> NSS VOLUNTEER  </B> </I> </CEnter>
+            </div>
+            <div class="card-body text-center">
+              <img src="images/Sigala Gowthami Ganeswari.JPG" alt="Team Member 1" class="cr-img">
+              <h5 class="card-title">Sigala Gowthami Ganeswari</h5>
+              <p class="card-text">22A31A0592</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header">
+              <CEnter>  <I>  <B> NSS VOLUNTEER  </B> </I> </CEnter>
+            </div>
+            <div class="card-body text-center">
+              <img src="images/Vendra Sri Harsha22A31A0594.JPG" alt="Team Member 2" class="cr-img">
+              <h5 class="card-title">Vendra Sri Harsha</h5>
+              <p class="card-text">22A31A0594</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header">
+              <CEnter>  <I>  <B> NSS VOLUNTEER  </B> </I> </CEnter>
+            </div>
+            <div class="card-body text-center">
+              <img src="images/Yeluri Vidhya Dhari.JPG" alt="Team Member 3" class="cr-img">
+              <h5 class="card-title">Yeluri Vidhya Dhari
+                </h5>
+              <p class="card-text">22A31A0596</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header">
+              <CEnter>  <I>  <B> NSS VOLUNTEER  </B> </I> </CEnter>
+            </div>
+            <div class="card-body text-center">
+              <img src="images/Kondi Durga Pravallika.JPG" alt="Team Member 1" class="cr-img">
+              <h5 class="card-title">Kondi Durga Pravallika
+                </h5>
+              <p class="card-text">22A31A0581</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header">
+              <CEnter>  <I>  <B> NSS VOLUNTEER  </B> </I> </CEnter>
+            </div>
+            <div class="card-body text-center">
+              <img src="images/bhargavi.JPG" alt="Team Member 2" class="cr-img">
+              <h5 class="card-title">
+                A.Bhargavi</h5>
+              <p class="card-text">22A31A05D3</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header">
+              <CEnter>  <I>  <B> NSS VOLUNTEER  </B> </I> </CEnter>
+            </div>
+            <div class="card-body text-center">
+              <img src="images/G.vidya prasanthi .JPG" alt="Team Member 3" class="cr-img">
+              <h5 class="card-title">G.vidya prasanthi 
+              </h5>
+              <p class="card-text">  22A31A05D9</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header">
+              <CEnter>  <I>  <B> NSS VOLUNTEER  </B> </I> </CEnter>
+            </div>
+            <div class="card-body text-center">
+              <img src="images/K.Ruby Sophia .JPG" alt="Team Member 1" class="cr-img">
+              <h5 class="card-title">K.Ruby Sophia 
+              </h5>
+              <p class="card-text">  22A31A05E7 </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header">
+              <CEnter>  <I>  <B> NSS VOLUNTEER  </B> </I> </CEnter>
+            </div>
+            <div class="card-body text-center">
+              <img src="images/manikanta.JPG" alt="Team Member 2" class="cr-img">
+              <h5 class="card-title">S.H.V.N.MANIKANTA</h5>
+              <p class="card-text">22A31A05J2</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header">
+              <CEnter>  <I>  <B> NSS VOLUNTEER  </B> </I> </CEnter>
+            </div>
+            <div class="card-body text-center">
+              <img src="images/Vidhatri.JPG" alt="Team Member 3" class="cr-img">
+              <h5 class="card-title">
+                P.Vidhatri</h5>
+              <p class="card-text">22A31A05F2</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+<!-- Footer -->
+<footer class="footer mt-auto py-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h5>Contact Us</h5>
+        <ul class="list-unstyled">
+          <li>Phone: 8074533568</li>
+          <li>Email: reach.karthik.khandavalli@gmail.com </li>
+          <li>Address: 1-378, ADB Road, Surampalem , Peddapuram East Godavari Dist.</li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h5>Quick Links</h5>
+        <ul class="list-unstyled">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="coordinator.html">Coordinators</a></li>
+          <li><a href="workshops.html">Workshops</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h5>Follow Us</h5>
+        <a href="#" class="text-white mr-3"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-white mr-3"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/karthik_khandavalli_?igsh=MTRyMjk5dnB0bHp2Zw==" class="text-white mr-3"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/karthik-khandavalli" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="container text-center mt-3">
+    <p class="mb-0">&copy; 2024 PRAGATI ENGINEERING COLLEGE [AUTONOMOUS]. All Rights Reserved. | Designed by K.V.V.L.S.KARTHIK [22A31A05A9]</p>
+  </div>
+</footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Dark Mode Script -->
+  <script>
+     const checkbox = document.getElementById("checkbox");
+    checkbox.addEventListener("change", function () {
+      document.body.classList.toggle("dark-mode");
+      localStorage.setItem("darkMode", checkbox.checked);
+    });
+
+    // Function to initialize dark mode based on user preference
+    function initializeDarkMode() {
+      const isDarkMode = JSON.parse(localStorage.getItem("darkMode")) || false;
+      if (isDarkMode) {
+        document.body.classList.add("dark-mode");
+        checkbox.checked = true;
+      }
+    }
+
+    // Call the initialization function
+    initializeDarkMode();
+  </script>
+</body>
+</html>

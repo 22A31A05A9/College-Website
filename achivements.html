@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Coordinator Page</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <style>
+    body {
+      background-color: #f4f4f9;
+      transition: background-color 0.3s ease;
+    }
+    .navbar {
+      background: linear-gradient(90deg, #0062E6, #33AEFF);
+      justify-content: space-between;
+    }
+    .navbar-brand img {
+      max-width: 100px;
+    }
+    .nav-link {
+      color: white !important;
+      margin-right: 15px;
+      transition: color 0.3s;
+    }
+    .nav-link:hover {
+      color: #ffeb3b !important;
+    }
+    .dark-mode-toggle {
+      background-color: transparent;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      transition: color 0.3s;
+    }
+
+    .dark-mode-toggle:hover {
+      color: #ffeb3b;
+    }
+    .marquee {
+      background-color: #007bff12;
+      color: white;
+      padding: 10px 0;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .top-bar {
+      background-color: #fefefe;
+      color: rgb(7, 7, 7);
+      padding: 10px 0;
+    }
+    .top-bar .col {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .top-bar .col img {
+      width: 200px;
+      margin-right: 15px;
+    }
+    .dark-mode {
+      background-color: #333;
+      color: #f4f4f9;
+    }
+    .dark-mode .navbar {
+      background: linear-gradient(90deg, #333, #555);
+    }
+    .dark-mode .card {
+      background-color: #444;
+      color: #f4f4f9;
+    }
+    .dark-mode .card-header {
+      background-color: #1a1a1a;
+    }
+    .dark-mode .marquee {
+      background-color: #33333312;
+    }
+    .dark-mode .top-bar {
+      background-color: #ffffff;
+      color: #101010;
+    }
+    .dark-mode .nav-link {
+      color: #f4f4f9 !important;
+    }
+    .dark-mode-toggle {
+      background-color: transparent;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      transition: color 0.3s;
+    }
+    .dark-mode-toggle:hover {
+      color: #ffeb3b;
+    }
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .marquee-item {
+        flex: 0 0 100%; /* Full width for smaller screens */
+        margin: 0 5px; /* Adjusted margin for spacing */
+      }
+      .marquee-item img {
+        width: 100%; /* Ensure images fill the container */
+      }
+    }
+    
+    /* Marquee Styles */
+    * {
+      box-sizing: border-box;
+    }
+    .marquee-content {
+      display: flex;
+      animation: scrolling 20s linear infinite;
+    }
+    .marquee-item {
+      flex: 0 0 auto;
+      margin: 0 10px; /* Adjusted margin for spacing */
+      overflow: hidden;
+     /* Hide overflow to prevent wrapping */
+    }
+    .marquee-item img {
+      display: block;
+      width: auto; /* Adjusted width for larger images */
+      height:250px; /* Fixed height for consistency */
+      margin: 0 auto; /* Center align images */
+    }
+    @keyframes scrolling {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+
+    /* table style  */
+
+   /* Table Styles */
+/* Table Styles */
+
+.table-hover tbody tr:hover {
+    background-color: #f1f1f1; /* Hover background color */
+}
+
+.table-primary {
+    background-color: #d1ecf1; /* Light blue */
+}
+
+.table-secondary {
+    background-color: #c6c8ca; /* Light grey */
+}
+
+.table-success {
+    background-color: #d4edda; /* Light green */
+}
+
+.table-danger {
+    background-color: #f8d7da; /* Light red */
+}
+
+.table-warning {
+    background-color: #fff3cd; /* Light yellow */
+}
+
+.table-info {
+    background-color: #d1ecf1; /* Light blue */
+}
+
+.table-light {
+    background-color: #fefefe; /* Light grey */
+}
+
+.table-dark {
+    background-color: #d6d8d9; /* Dark grey */
+}
+
+.dark-mode .table {
+    color: #333; /* Dark mode text color */
+}
+
+.dark-mode .table-hover tbody tr:hover {
+    background-color: #444; /* Dark mode hover background color */
+}
+
+.dark-mode td {
+    background-color: #0056b3; /* Dark mode primary table background color */
+    color: #f8f9fa; /* Dark mode primary table text color */
+}
+.dark-mode th {
+    background-color: #75f23bda; /* Dark mode primary table background color */
+    color: #f8f9fa; /* Dark mode primary table text color */
+}
+/* Light/Dark Mode Toggle Styles */
+.checkbox {
+      opacity: 0;
+      position: absolute;
+    }
+
+    .checkbox-label {
+      background-color: #111;
+      width: 50px;
+      height: 26px;
+      border-radius: 50px;
+      position: relative;
+      padding: 5px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .fa-moon {
+      color: #f1c40f;
+    }
+
+    .fa-sun {
+      color: #f39c12;
+    }
+
+    .checkbox-label .ball {
+      background-color: #fff;
+      width: 22px;
+      height: 22px;
+      position: absolute;
+      left: 2px;
+      top: 2px;
+      border-radius: 50%;
+      transition: transform 0.2s linear;
+    }
+
+    .checkbox:checked + .checkbox-label .ball {
+      transform: translateX(24px);
+    }
+    .footer {
+  background: linear-gradient(90deg, #0062E6, #33AEFF);
+  color: white;
+  padding: 20px 0;
+}
+
+.footer h5 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.footer ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.footer ul li {
+  margin-bottom: 10px;
+}
+
+.footer ul li a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer ul li a:hover {
+  color: #ffeb3b;
+}
+
+.footer .fab {
+  font-size: 20px;
+  transition: color 0.3s;
+}
+
+.footer .fab:hover {
+  color: #ffeb3b;
+}
+
+.footer .container.text-center p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.dark-mode .footer {
+  background: linear-gradient(90deg, #333, #555);
+}
+
+  </style>
+</head>
+<body>
+  <!-- Top Bar -->
+  <div class="container-fluid top-bar">
+    <div class="row">
+      <div class="col d-flex justify-content-center align-items-center">
+        <img src="images/pragati-logo-JK-2-1536x572.png" alt="College Logo">
+        <p class="mb-0 ml-3">Phone:+91 8074533568</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about.html">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="coordinator.html">Coordinators</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="workshops.html">Workshops</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="clubs.html">Clubs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="strides.html">Strides</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="achivements.html">Achievements</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="competitions.html">Competitions</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="nccnss.html">NCC / NSS</a>
+        </li>
+        <li style="padding-top: 5px;">
+          <input type="checkbox" class="checkbox" id="checkbox">
+          <label for="checkbox" class="checkbox-label">
+            <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i>
+            <span class="ball"></span>
+          </label>
+    
+        </li>
+      </ul>
+
+      
+    </div>
+    <div>
+     
+      
+
+
+
+    </div>
+  </nav>
+
+<center><i><h2> Achievements </h2></i></center>
+
+  <!-- Marquee -->
+  <div class="marquee">
+    <div class="marquee-content">
+      <div class="marquee-item">
+        <img src="images/a1.jpeg" alt="">
+        
+      </div>
+      <div class="marquee-item">
+        <img src="images/a2.jpeg" alt="">
+        
+      </div>
+      <div class="marquee-item">
+        <img src="images/a3.jpeg" alt="">
+      </div>
+      <div class="marquee-item">
+        <img src="images/a4.jpeg" alt="">
+      </div>
+      <div class="marquee-item">
+        <img src="images/a5.jpeg" alt="">
+      </div>
+      <div class="marquee-item">
+        <img src="images/a6.jpeg" alt="">
+      </div>
+      <div class="marquee-item">
+        <img src="images/a7.jpeg" alt="">
+      </div>
+      <div class="marquee-item">
+        <img src="images/a8.jpeg" alt="">
+      </div>
+      <div class="marquee-item">
+        <img src="images/a9.jpeg" alt="">
+      </div>
+      <div class="marquee-item">
+        <img src="images/a10.jpeg" alt="">
+      </div>
+
+      <!-- Repeat for more images -->
+    </div>
+  </div>
+
+  <div class="container mt-5">
+    <h2 class="text-center mb-4"><u> Student Achievements from 01-06-2023 to 31-03-2024 </u></h2>
+    <table class="table table-bordered table-hover ">
+        <thead class="thead-dark">
+            <tr>
+                <th>S No</th>
+                <th>Event</th>
+                <th>Internal</th>
+                <th>External</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Paper Publications</td>
+                <td>--</td>
+                <td>46</td>
+                <td>46</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Placements</td>
+                <td>--</td>
+                <td>146</td>
+                <td>146</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Book Chapter Published (Scopus Indexed)</td>
+                <td>--</td>
+                <td>3</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>NPTEL certifications completed</td>
+                <td>--</td>
+                <td>73</td>
+                <td>73</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Internships completed</td>
+                <td>629</td>
+                <td>6</td>
+                <td>635</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Gate qualified</td>
+                <td>--</td>
+                <td>4</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Government Project sanctioned (MSME)</td>
+                <td>--</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Workshops Attended</td>
+                <td>--</td>
+                <td>41</td>
+                <td>41</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Sports activities</td>
+                <td>95</td>
+                <td>15</td>
+                <td>110</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>Project Expo</td>
+                <td>37</td>
+                <td>10</td>
+                <td>47</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>NCC & NSS</td>
+                <td>20</td>
+                <td>9</td>
+                <td>29</td>
+            </tr>
+        </tbody>
+        <tfoot class="thead-dark">
+            <tr>
+                <th colspan="4" class="text-right">Total</th>
+                <th>1235</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+  <!-- Footer -->
+<!-- Footer -->
+<footer class="footer mt-auto py-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h5>Contact Us</h5>
+        <ul class="list-unstyled">
+          <li>Phone: 8074533568</li>
+          <li>Email: reach.karthik.khandavalli@gmail.com </li>
+          <li>Address: 1-378, ADB Road, Surampalem , Peddapuram East Godavari Dist.</li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h5>Quick Links</h5>
+        <ul class="list-unstyled">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="coordinator.html">Coordinators</a></li>
+          <li><a href="workshops.html">Workshops</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h5>Follow Us</h5>
+        <a href="#" class="text-white mr-3"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-white mr-3"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/karthik_khandavalli_?igsh=MTRyMjk5dnB0bHp2Zw==" class="text-white mr-3"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/karthik-khandavalli" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="container text-center mt-3">
+    <p class="mb-0">&copy; 2024 PRAGATI ENGINEERING COLLEGE [AUTONOMOUS]. All Rights Reserved. | Designed by K.V.V.L.S.KARTHIK [22A31A05A9]</p>
+  </div>
+</footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Dark Mode Script -->
+  <script>
+     // Dark Mode Toggle Functionality
+     const checkbox = document.getElementById("checkbox");
+    checkbox.addEventListener("change", function () {
+      document.body.classList.toggle("dark-mode");
+      localStorage.setItem("darkMode", checkbox.checked);
+    });
+
+    // Function to initialize dark mode based on user preference
+    function initializeDarkMode() {
+      const isDarkMode = JSON.parse(localStorage.getItem("darkMode")) || false;
+      if (isDarkMode) {
+        document.body.classList.add("dark-mode");
+        checkbox.checked = true;
+      }
+    }
+
+    // Call the initialization function
+    initializeDarkMode();
+  </script>
+</body>
+</html>
